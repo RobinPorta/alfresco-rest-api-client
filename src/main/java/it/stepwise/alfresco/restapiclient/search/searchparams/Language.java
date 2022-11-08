@@ -12,7 +12,7 @@ public enum Language {
     @JsonProperty("cmis")
     CMIS("cmis");
 
-    public final String value;
+    private final String value;
 
     public String getValue() {
         return value;

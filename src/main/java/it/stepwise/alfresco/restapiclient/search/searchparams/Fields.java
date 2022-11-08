@@ -12,7 +12,11 @@ public enum Fields {
     @JsonProperty("search")
     SEARCH("search");
 
-    public final String value;
+    private final String value;
+
+    public String getValue() {
+        return value;
+    }
 
     private Fields(String value) {
         this.value = value;

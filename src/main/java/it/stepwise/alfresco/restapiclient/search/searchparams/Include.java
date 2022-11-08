@@ -18,7 +18,11 @@ public enum Include {
     @JsonProperty("association")
     ASSOCIATION("association");
 
-    public final String value;
+    private final String value;
+
+    public String getValue() {
+        return value;
+    }
 
     private Include(String value) {
         this.value = value;
