@@ -45,24 +45,24 @@ public class SearchApiTest {
     @Test
     public void t2_checkSearchModel() {
 
-        assertEquals(Language.AFTS.getValue(), "afts");
-        assertEquals(Language.LUCENE.getValue(), "lucene");
-        assertEquals(Language.CMIS.getValue(), "cmis");
+        assertEquals("afts", Language.AFTS.getValue());
+        assertEquals("lucene", Language.LUCENE.getValue());
+        assertEquals("cmis", Language.CMIS.getValue());
 
-        assertEquals(Include.ALLOWABLE_OPERATIONS.getValue(), "allowableOperations");
-        assertEquals(Include.ASPECT_NAMES.getValue(), "aspectNames");
-        assertEquals(Include.IS_LINK.getValue(), "isLink");
-        assertEquals(Include.PATH.getValue(), "path");
-        assertEquals(Include.PROPERTIES.getValue(), "properties");
-        assertEquals(Include.ASSOCIATION.getValue(), "association");
+        assertEquals("allowableOperations", Include.ALLOWABLE_OPERATIONS.getValue());
+        assertEquals("aspectNames", Include.ASPECT_NAMES.getValue());
+        assertEquals("isLink", Include.IS_LINK.getValue());
+        assertEquals("path", Include.PATH.getValue());
+        assertEquals("properties", Include.PROPERTIES.getValue());
+        assertEquals("association", Include.ASSOCIATION.getValue());
 
-        assertEquals(Fields.ID.getValue(), "id");
-        assertEquals(Fields.NAME.getValue(), "name");
-        assertEquals(Fields.SEARCH.getValue(), "search");
+        assertEquals("id", Fields.ID.getValue());
+        assertEquals("name", Fields.NAME.getValue());
+        assertEquals("search", Fields.SEARCH.getValue());
 
-        assertEquals(Sort.Type.FIELD.getValue(), "FIELD");
-        assertEquals(Sort.Type.DOCUMENT.getValue(), "DOCUMENT");
-        assertEquals(Sort.Type.SCORE.getValue(), "SCORE");
+        assertEquals("FIELD", Sort.Type.FIELD.getValue());
+        assertEquals("DOCUMENT", Sort.Type.DOCUMENT.getValue());
+        assertEquals("SCORE", Sort.Type.SCORE.getValue());
 
     }
 
@@ -81,17 +81,17 @@ public class SearchApiTest {
         Fields[] fields = new Fields[] {Fields.NAME};
         searchBody.setFields(fields);
 
-        assertEquals(searchBody.getQuery().getQuery(), "TYPE:\"cm:content\"");
-        assertEquals(searchBody.getQuery().getLanguage().getValue(), "afts");
-        assertEquals(searchBody.getInclude().length, 1);
-        assertEquals(searchBody.getSort().length, 1);
-        assertEquals(searchBody.getSort()[0].getField(), "cm:name");
-        assertEquals(searchBody.getSort()[0].getType().getValue(), "FIELD");
+        assertEquals("TYPE:\"cm:content\"", searchBody.getQuery().getQuery());
+        assertEquals("afts", searchBody.getQuery().getLanguage().getValue());
+        assertEquals(1, searchBody.getInclude().length);
+        assertEquals(1, searchBody.getSort().length);
+        assertEquals("cm:name", searchBody.getSort()[0].getField());
+        assertEquals("FIELD", searchBody.getSort()[0].getType().getValue());
         assertTrue(searchBody.getSort()[0].getAscending());
-        assertEquals(searchBody.getPaging().getMaxItems(), 10);
-        assertEquals(searchBody.getPaging().getSkipCount(), 5);
-        assertEquals(searchBody.getFields().length, 1);
-        assertEquals(searchBody.getFields()[0].getValue(), "name");
+        assertEquals(10, searchBody.getPaging().getMaxItems());
+        assertEquals(5, searchBody.getPaging().getSkipCount());
+        assertEquals(1, searchBody.getFields().length);
+        assertEquals("name", searchBody.getFields()[0].getValue());
 
     }
 
@@ -109,7 +109,7 @@ public class SearchApiTest {
         Query query = new Query(fts.getQuery());
         searchBody.setQuery(query);
 
-        assertEquals(searchBody.getQuery().getQuery(), ("EXACTTYPE:\"cm:content\" AND !cm:title:\"test.docx\" AND ASPECT:\"cm:titled\""));
+        assertEquals("EXACTTYPE:\"cm:content\" AND !cm:title:\"test.docx\" AND ASPECT:\"cm:titled\"", searchBody.getQuery().getQuery());
 
     }
 
