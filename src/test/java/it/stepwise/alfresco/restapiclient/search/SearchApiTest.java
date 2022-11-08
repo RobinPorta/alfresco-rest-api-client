@@ -2,6 +2,7 @@ package it.stepwise.alfresco.restapiclient.search;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONArray;
@@ -39,7 +40,7 @@ public class SearchApiTest {
 
         System.out.println(responseEither.getData());
 
-        assertEquals(responseEither.getError(), null);
+        assertNull(responseEither.getError());
         assertTrue(responseEither.getData().getJSONObject("list") instanceof JSONObject);
         assertTrue(responseEither.getData().getJSONObject("list").getJSONArray("entries") instanceof JSONArray);
     }
@@ -98,7 +99,7 @@ public class SearchApiTest {
     }
 
     @Test
-    public void t4_checkFTSQueryBuilder() throws JsonProcessingException {
+    public void t4_checkFTSQueryBuilder() {
 
         SearchBody searchBody = new SearchBody();
         Fts fts = Fts.ftsBuilder()
@@ -116,7 +117,7 @@ public class SearchApiTest {
     }
 
     @Test
-    public void t5_searchAFTSComplex() throws JsonProcessingException {
+    public void t5_searchAFTSComplex() {
 
         SearchBody searchBody = new SearchBody();
         Query query = new Query("TYPE:\"cm:content\"");
@@ -131,12 +132,12 @@ public class SearchApiTest {
         ResponseEither<it.stepwise.alfresco.restapiclient.util.Error, JSONObject> responseEither = this.searchApi.search(
             searchBody);
 
-        assertEquals(responseEither.getError(), null);
+        assertNull(responseEither.getError());
 
     }
 
     @Test
-    public void t6_searchLucene() throws JsonProcessingException {
+    public void t6_searchLucene() {
 
         SearchBody searchBody = new SearchBody();
         Query query = new Query(Language.LUCENE, "cm\\:name:\"Test.docx\"");
@@ -151,12 +152,12 @@ public class SearchApiTest {
         ResponseEither<it.stepwise.alfresco.restapiclient.util.Error, JSONObject> responseEither = this.searchApi.search(
             searchBody);
 
-        assertEquals(responseEither.getError(), null);
+        assertNull(responseEither.getError());
 
     }
 
     @Test
-    public void t7_searchCmis() throws JsonProcessingException {
+    public void t7_searchCmis() {
 
         SearchBody searchBody = new SearchBody();
         Query query = new Query(Language.CMIS, "select * from cmis:document where cmis:name='Test.docx'");
@@ -165,7 +166,7 @@ public class SearchApiTest {
         ResponseEither<it.stepwise.alfresco.restapiclient.util.Error, JSONObject> responseEither = this.searchApi.search(
             searchBody);
 
-        assertEquals(responseEither.getError(), null);
+        assertNull(responseEither.getError());
 
     }
     
